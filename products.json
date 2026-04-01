@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Nike Air Max 90",
+    "category": "Men's Shoes",
+    "price": 129.99,
+    "rating": 4.5,
+    "stock": 50,
+    "image": "/uploads/air-max-90.jpg",
+    "description": "Classic Nike Air Max 90 sneakers"
+  },
+  {
+    "id": 2,
+    "name": "Nike Revolution 6",
+    "category": "Running Shoes",
+    "price": 69.99,
+    "rating": 4.2,
+    "stock": 100,
+    "image": "/uploads/revolution-6.jpg",
+    "description": "Lightweight running shoes"
+  },
+  {
+    "id": 3,
+    "name": "Nike Cortez",
+    "category": "Unisex",
+    "price": 89.99,
+    "rating": 4.8,
+    "stock": 30,
+    "image": "/uploads/cortez.jpg",
+    "description": "Classic Nike Cortez design"
+  }
+]
