@@ -8,6 +8,7 @@ import { useThemeStore } from './stores/useThemeStore.js'
 
 import App from './App.jsx' 
 import Admin from './pages/admin.jsx' 
+import Login from './pages/login.jsx' 
 import CreateProduct from './pages/create.jsx'
 import Layout from './Layout/mainlayout.jsx'
 import ProductDetail from './pages/about.jsx'
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="product/:id" element={<ProductDetail />} />
           <Route path="wishlist" element={<WishlistPage />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path="login" element={<Login />} />
           <Route path="admin" element={<Admin />} />
           <Route path="createproduct" element={<CreateProduct />} />
         </Route>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IoSearchOutline, IoHeartOutline, IoBagHandleOutline, IoMoon, IoSunny, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
+import { BarChart3 } from 'lucide-react';
 import { useCartStore } from '../stores/useCartStore';
 import { useThemeStore } from '../stores/useThemeStore';
 import { useLanguageStore } from '../stores/useLanguageStore';
@@ -51,7 +52,11 @@ const Header = () => {
           <span className="text-gray-300 dark:text-gray-600">|</span>
           <Link to="/createproduct" className="hover:text-gray-500 dark:hover:text-gray-400 font-semibold text-blue-600 dark:text-blue-400 transition-colors">{t('createProduct')}</Link>
           <span className="text-gray-300 dark:text-gray-600">|</span>
-          <Link to="/admin" className="hover:text-gray-500 dark:hover:text-gray-400 transition-colors">{t('signIn')}</Link>
+          <Link to="/admin" className="hover:text-gray-500 dark:hover:text-gray-400 transition-colors flex items-center gap-1">
+            <BarChart3 size={14} /> {t('dashboard') || 'Dashboard'}
+          </Link>
+          <span className="text-gray-300 dark:text-gray-600">|</span>
+          <Link to="/login" className="hover:text-gray-500 dark:hover:text-gray-400 transition-colors">{t('signIn')}</Link>
           <span className="text-gray-300 dark:text-gray-600">|</span>
           
           {/* Language Switcher */}
@@ -169,6 +174,16 @@ const Header = () => {
               <IoMoon size={26} className="text-gray-700" />
             )}
           </button>
+
+          {/* Dashboard Button */}
+          <Link
+            to="/admin"
+            className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-medium rounded-full transition-all dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800"
+            title="View Dashboard"
+          >
+            <BarChart3 size={18} />
+            <span className="text-sm">{t('dashboard') || 'Dashboard'}</span>
+          </Link>
         </div>
       </div>
 
@@ -248,6 +263,14 @@ const Header = () => {
                 
                 <Link 
                   to="/admin" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors flex items-center gap-2"
+                >
+                  <BarChart3 size={20} /> {t('dashboard') || 'Dashboard'}
+                </Link>
+                
+                <Link 
+                  to="/login" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-lg font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 >
