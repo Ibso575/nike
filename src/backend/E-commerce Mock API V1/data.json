@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": 5,
+      "name": "Nike Air Force 1 Mid '07",
+      "category": "Men's Shoes",
+      "price": 150,
+      "description": "Iconic mid-top design with premium leather and classic Nike Air cushioning.",
+      "image": "/images/image-1775033785971-850421686.png",
+      "stock": 21,
+      "rating": 4.8
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "address": "123 Main St, Springfield, IL",
+      "date": "2023-11-01",
+      "status": "Completed",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "productId": 2,
+          "quantity": 2
+        }
+      ],
+      "total": 199.99
+    }
+  ],
+  "admins": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "johndoe@example.com",
+      "password": "$2a$12$3aXsIBbnjO/dkF9omAN9VOs4rED0bda.TSRiD4O4FmqxTBjjdN4hi"
+    }
+  ]
+}

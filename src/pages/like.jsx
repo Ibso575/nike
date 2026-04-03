@@ -1,12 +1,12 @@
 import React from 'react';
-import { useCart } from '../context/cartcontext';
-import { useLanguage } from '../context/languagecontext';
+import { useCartStore } from '../stores/useCartStore';
+import { useLanguageStore } from '../stores/useLanguageStore';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Likelist = () => {
-  const { wishlist, addToCart } = useCart();
-  const { t } = useLanguage();
+  const { wishlist, addToCart } = useCartStore();
+  const t = useLanguageStore((state) => state.t);
 
   return (
     <motion.div 

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import api from '../config/axios';
-import { useLanguage } from '../context/languagecontext';
+import { useLanguageStore } from '../stores/useLanguageStore';
+import { useProductStore } from '../stores/useProductStore';
 import { motion } from 'framer-motion';
 
 // Yup validatsiya sxemasi
@@ -24,7 +25,8 @@ const validationSchema = Yup.object({
 });
 
 const CreateProduct = () => {
-  const { t } = useLanguage();
+  const t = useLanguageStore((state) => state.t);
+  const { addProduct } = useProductStore();
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -55,6 +57,9 @@ const CreateProduct = () => {
       try {
         const response = await api.post('/products', data);
         if (response.data.message === "Success") {
+          // Add new product to store
+          const newProduct = response.data.data;
+          addProduct(newProduct);
           alert(t('createSuccess'));
           // Formani tozalash
           resetForm();

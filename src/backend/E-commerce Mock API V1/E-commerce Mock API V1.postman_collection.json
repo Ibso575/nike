@@ -1,0 +1,745 @@
+{
+	"info": {
+		"_postman_id": "785d4553-c917-4a1a-ab76-e8f7665951b5",
+		"name": "E-commerce Mock API V1",
+		"description": "Mock API for e-commerce site with endpoints for products, users, and orders.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19131229"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Products - Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Headphones\",\n        \"category\": \"Electronics\",\n        \"price\": 49.99,\n        \"stock\": 100\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Running Shoes\",\n        \"category\": \"Clothing\",\n        \"price\": 75.0,\n        \"stock\": 50\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Products - Get A Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/products/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Headphones\",\n        \"category\": \"Electronics\",\n        \"price\": 49.99,\n        \"stock\": 100\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Running Shoes\",\n        \"category\": \"Clothing\",\n        \"price\": 75.0,\n        \"stock\": 50\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Orders - Create An Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"items\": [\r\n    { \"productId\": 1, \"quantity\": 2 },\r\n    { \"productId\": 2, \"quantity\": 1 }\r\n  ],\r\n  \"address\": \"123 Main St, Cityville, State, ZIP\",\r\n  \"date\": \"2023-01-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    { \"productId\": 1, \"quantity\": 2 },\r\n    { \"productId\": 2, \"quantity\": 1 }\r\n  ],\r\n  \"address\": \"123 Main St, Cityville, State, ZIP\",\r\n  \"date\": \"2023-01-01\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Headphones\",\n        \"category\": \"Electronics\",\n        \"price\": 49.99,\n        \"stock\": 100\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Running Shoes\",\n        \"category\": \"Clothing\",\n        \"price\": 75.0,\n        \"stock\": 50\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Auth - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"token\": \"fake-jwt-token\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"johndoe\",\n        \"role\": \"customer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Products - Create A Product [ADMIN]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Wireless Bluetooth Headpshonsdes",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Electronics",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "49.99",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "High-quality sound with deep bass and a long battery life.",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4.5",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/USER/Pictures/test.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Wireless Bluetooth Headpshonsdes",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "Electronics",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "49.99",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "High-quality sound with deep bass and a long battery life.",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "rating",
+											"value": "4.5",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Pictures/test.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Headphones\",\n        \"category\": \"Electronics\",\n        \"price\": 49.99,\n        \"stock\": 100\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Running Shoes\",\n        \"category\": \"Clothing\",\n        \"price\": 75.0,\n        \"stock\": 50\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Products - Update A Product [ADMIN]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Wireless Bluetooth Headpshonsdes 2",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Electronics",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "49.99",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "High-quality sound with deep bass and a long battery life.",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "101",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4.5",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/USER/Pictures/test.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/products/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Wireless Bluetooth Headpshonsdes",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "Electronics",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "49.99",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "High-quality sound with deep bass and a long battery life.",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "rating",
+											"value": "4.5",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Pictures/test.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Headphones\",\n        \"category\": \"Electronics\",\n        \"price\": 49.99,\n        \"stock\": 100\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Running Shoes\",\n        \"category\": \"Clothing\",\n        \"price\": 75.0,\n        \"stock\": 50\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Products - Delete A Product [ADMIN] Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Wireless Bluetooth Headpshonsdes",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Electronics",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "49.99",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "High-quality sound with deep bass and a long battery life.",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4.5",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/USER/Pictures/test.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/products/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Wireless Bluetooth Headpshonsdes",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "Electronics",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "49.99",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "High-quality sound with deep bass and a long battery life.",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "rating",
+											"value": "4.5",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Pictures/test.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Headphones\",\n        \"category\": \"Electronics\",\n        \"price\": 49.99,\n        \"stock\": 100\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Running Shoes\",\n        \"category\": \"Clothing\",\n        \"price\": 75.0,\n        \"stock\": 50\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Orders - Get All Orders [Admin]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczMTQ5MjgwMiwiZXhwIjoxNzMxNDk2NDAyfQ.jBX2vmPzLohK4HdtccwAOLnQGbl_nTkkbrKg6WFIm60",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"userId\": 1,\n        \"items\": [\n            { \"productId\": 1, \"quantity\": 2 }\n        ],\n        \"total\": 99.98,\n        \"status\": \"Completed\"\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}

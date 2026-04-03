@@ -2,12 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { IoTrashOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/cartcontext';
-import { useLanguage } from '../context/languagecontext';
+import { useCartStore } from '../stores/useCartStore';
+import { useLanguageStore } from '../stores/useLanguageStore';
 
 const Cart = () => {
-  const { cart, removeFromCart } = useCart();
-  const { t } = useLanguage();
+  const { cart, removeFromCart } = useCartStore();
+  const t = useLanguageStore((state) => state.t);
 
   // Umumiy summani hisoblash
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);

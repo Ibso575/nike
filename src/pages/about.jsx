@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../config/axios'; // O'zingiz yaratgan api instansiyasini import qiling
-import { useLanguage } from '../context/languagecontext';
+import { useLanguageStore } from '../stores/useLanguageStore';
+import { useProductStore } from '../stores/useProductStore';
 import { IoTrashOutline, IoCreateOutline, IoCloseOutline, IoChevronBackOutline } from "react-icons/io5";
 import { motion } from 'framer-motion';
 
 const About = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const t = useLanguageStore((state) => state.t);
+  const { updateProduct, deleteProduct } = useProductStore();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -16,31 +18,33 @@ const About = () => {
   const [editImage, setEditImage] = useState(null);
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        // baseURL allaqachon api.js da bor, shuning uchun faqat /products/${id} yetarli
+        const res = await api.get(`/products/${id}`);
+        const data = res.data.data || res.data;
+        setProduct(data);
+        setEditData(data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Xato:", err);
+        setLoading(false);
+      }
+    };
+
     fetchProduct();
   }, [id]);
-
-  const fetchProduct = async () => {
-    try {
-      // baseURL allaqachon api.js da bor, shuning uchun faqat /products/${id} yetarli
-      const res = await api.get(`/products/${id}`);
-      const data = res.data.data || res.data;
-      setProduct(data);
-      setEditData(data);
-      setLoading(false);
-    } catch (err) {
-      console.error("Xato:", err);
-      setLoading(false);
-    }
-  };
 
   // 1. O'chirish (Delete)
   const handleDelete = async () => {
     if (window.confirm(t('confirmDelete') || "Are you sure you want to delete?")) {
       try {
         await api.delete(`/products/${id}`);
+        // Update store after successful deletion
+        deleteProduct(parseInt(id));
         alert(t('deleteSuccess') || "Deleted!");
         navigate('/');
-      } catch (err) {
+      } catch (_err) {
         alert(t('deleteError') || "Error deleting!");
       }
     }
@@ -65,13 +69,15 @@ const About = () => {
         updateData = formData;
       }
       
-      await api.put(`/products/${id}`, updateData);
-      setProduct(editData);
+      const response = await api.put(`/products/${id}`, updateData);
+      const updatedProduct = response.data.data || response.data;
+      
+      // Update store after successful update
+      updateProduct(parseInt(id), updatedProduct);
+      setProduct(updatedProduct);
       setIsEditModalOpen(false);
       setEditImage(null);
       alert(t('updateSuccess') || "Updated!");
-      // Yangilangan mahsulotni qaytadan yuklash
-      fetchProduct();
     } catch (err) {
       alert(t('updateError') || "Error updating!");
       console.error(err);

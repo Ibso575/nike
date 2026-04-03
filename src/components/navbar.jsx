@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IoSearchOutline, IoHeartOutline, IoBagHandleOutline, IoMoon, IoSunny, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
-import { useCart } from '../context/cartcontext';
-import { useTheme } from '../context/themecontext';
-import { useLanguage } from '../context/languagecontext';
+import { useCartStore } from '../stores/useCartStore';
+import { useThemeStore } from '../stores/useThemeStore';
+import { useLanguageStore } from '../stores/useLanguageStore';
 import nikejump from '../assets/nikejump.svg';
 import api from '../config/axios'; // Barcha mahsulotlarni olish uchun
 
 const Header = () => {
-  const { cart, wishlist } = useCart();
-  const { isDark, toggleTheme } = useTheme();
-  const { language, toggleLanguage, t } = useLanguage();
+  const { cart, wishlist } = useCartStore();
+  const { isDark, toggleTheme } = useThemeStore();
+  const language = useLanguageStore((state) => state.language);
+  const toggleLanguage = useLanguageStore((state) => state.toggleLanguage);
+  const t = useLanguageStore((state) => state.t);
   const [searchTerm, setSearchTerm] = useState("");
   const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);

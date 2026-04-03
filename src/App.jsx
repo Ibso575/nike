@@ -2,37 +2,37 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "./config/axios";
-import { useCart } from "./context/cartcontext";
-import { useLanguage } from "./context/languagecontext";
+import { useCartStore } from "./stores/useCartStore";
+import { useLanguageStore } from "./stores/useLanguageStore";
+import { useProductStore } from "./stores/useProductStore";
 import { motion } from "framer-motion";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 const App = () => {
-  const [product, setproduct] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
-  const { addToCart, addToWishlist } = useCart();
-  const { t } = useLanguage();
+  const { addToCart, addToWishlist } = useCartStore();
+  const t = useLanguageStore((state) => state.t);
+  const { products, setProducts, loading, setLoading } = useProductStore();
 
   useEffect(() => {
     (async () => {
       try {
         const res = await api.get("/products");
-        setproduct(res.data.data);
+        const productsData = res.data.data;
+        setProducts(productsData);
         setLoading(false);
       } catch (err) {
         console.error("Mahsulotlarni yuklashda xato:", err);
         setLoading(false);
       }
     })();
-  }, []);
+  }, [setProducts, setLoading]);
 
   // Pagination hisoblash
-  const totalPages = Math.ceil(product.length / itemsPerPage);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProducts = product.slice(startIndex, endIndex);
+  const currentProducts = products.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div className="max-w-[1440px] mx-auto px-6 md:px-10 py-10 font-sans bg-white dark:bg-gray-950 text-black dark:text-white transition-colors">
       <h1 className="text-2xl font-bold mb-8 italic uppercase tracking-wide">
-        {t('allProducts')} ({product.length})
+        {t('allProducts')} ({products.length})
       </h1>
       
       {/* Mahsulotlar Grid-i */}
