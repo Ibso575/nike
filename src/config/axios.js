@@ -7,12 +7,12 @@ const api = axios.create({
 
 // Transform FakeStoreAPI data to match our app format
 const transformProduct = (product) => {
-  // Use realistic Nike product images from reliable sources
+  // Use placeholder images - reliable and no network issues
   const images = [
-    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop", // Nike shoes
-    "https://images.unsplash.com/photo-1515562141207-5dca89f5e1a7?w=400&h=400&fit=crop", // Nike shoes
-    "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400&h=400&fit=crop", // Nike shoes
-    "https://images.unsplash.com/photo-1533562141207-5dca89f5e1a8?w=400&h=400&fit=crop", // Nike shoes
+    "/placeholder.svg",
+    "/placeholder.svg",
+    "/placeholder.svg",
+    "/placeholder.svg",
   ];
 
   return {
